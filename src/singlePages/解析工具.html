@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
     <title>解析工具</title>
     <style>
       body {
@@ -64,16 +67,20 @@
       var pageWidth = html.getBoundingClientRect().width;
       html.style.fontSize = pageWidth / 15 + "px";
       function copyToClipboard() {
-        var input = document.getElementById("input");
-        input.value = input.value
-          .split("\n")
-          .map((item) => /[0-9]+(?=份)/.exec(item)[0]).join(`
+        try {
+          var input = document.getElementById("input");
+          input.value = input.value
+            .split("\n")
+            .map((item) => /[0-9]+(?=份)/.exec(item)[0]).join(`
 `);
-        input.select();
-        document.execCommand("copy");
-        setTimeout(() => {
-          alert("已复制，去粘贴");
-        }, 200);
+          input.select();
+          document.execCommand("copy");
+          setTimeout(() => {
+            alert("已复制，去粘贴");
+          }, 200);
+        } catch (e) {
+            alert(`解析失败，请检查数据。错误原因：${e}`);
+        }
       }
     </script>
   </body>
