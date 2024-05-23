@@ -41,6 +41,7 @@
         color: #fff;
         border: none;
         cursor: pointer;
+        font-size: 0.625rem;
       }
     </style>
   </head>
@@ -53,6 +54,12 @@
     </div>
 
     <script>
+      //动态设置字体大小，自适应
+      var html = document.getElementsByTagName("html")[0];
+      //获取屏幕宽度
+      var pageWidth = html.getBoundingClientRect().width;
+      console.log(pageWidth);
+      html.style.fontSize = pageWidth / 15 + "px";
       function copyToClipboard() {
         var input = document.getElementById("input");
         input.value = input.value
